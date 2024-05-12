@@ -34,22 +34,29 @@ class Teacher implements TeacherInterface {
   }
 }
 
-function createEmployee(salary: number | string): TeacherInterface | DirectorInterface {
+function createEmployee(
+  salary: number | string
+): TeacherInterface | DirectorInterface {
   if (typeof salary === "number" && salary <= 500) {
-    return new Teacher()
+    return new Teacher();
   }
   return new Director();
 }
 
-
-function isDirector(employee: TeacherInterface | DirectorInterface): employee is DirectorInterface {
+function isDirector(
+  employee: TeacherInterface | DirectorInterface
+): employee is DirectorInterface {
   return (employee as DirectorInterface).workDirectorTasks !== undefined;
 }
 
 function executeWork(employee: TeacherInterface | DirectorInterface): string {
-  if(isDirector(employee)) {
-    return employee.workDirectorTasks();
-  } else {
-    return employee.workTeacherTasks();
-  }
+  if (isDirector(employee)) return employee.workDirectorTasks();
+  return employee.workTeacherTasks();
+}
+
+type Subjects = "Math" | "History";
+
+function teachClass(todayClass: Subjects): string {
+  if (todayClass === "Math") return "Teaching Math";
+  return "Teaching History";
 }
