@@ -1,9 +1,5 @@
 import $ from 'jQuery';
 
-$(document).ready(function() {
-    $('body').append(
-        $('<h1></h1>').text('Holberton Dashboard'),
-        $('<p></p>').text('Dashboard data for the students'),
-        $('<p></p>').text('Copyright - Holberton School'),
-    );
-    });
+$('body').append('<p>Holberton Dashboard</p>');
+$('body').append('<p>Dashboard data for the students</p>');
+$('body').append('<p>Copyright - Holberton School</p>');
