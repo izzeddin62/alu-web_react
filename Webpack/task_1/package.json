@@ -17,6 +17,6 @@
   },
   "dependencies": {
     "jquery": "^3.7.1",
-    "lodash.debounce": "^4.0.8"
+    "lodash": "^4.17.21"
   }
 }
