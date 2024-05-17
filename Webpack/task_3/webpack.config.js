@@ -27,7 +27,7 @@ module.exports = {
 
   devServer: {
     port: 8564,
-    static: path.join(__dirname, 'public'),
+    static: path.join(__dirname, './public'),
   },
   plugins: [new HtmlWebpackPlugin(), new CleanWebpackPlugin()],
   devtool: 'inline-source-map',
