@@ -6,14 +6,14 @@ import { getFooterCopy, getFullYear } from "./utils";
 function App() {
   return (
     <div className="container">
+      <div className="root-notifications">
+        <Notifications />
+      </div>
       <div className="App-header">
         <img src={logo} alt="logo" />
         <h1>School dashboard</h1>
       </div>
       <div className="App-body">
-        <div className="root-notifications">
-          <Notifications />
-        </div>
         <p>Login to access the full dashboard</p>
         <form action="">
           <label htmlFor="email">
