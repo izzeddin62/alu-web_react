@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
-import Notifications from "./Notifications";
+import Notifications from "../Notifications/Notifications";
 import logo from "./assets/logo.jpeg";
-import { getFooterCopy, getFullYear } from "./utils";
+import { getFooterCopy, getFullYear } from "../utils/utils";
 
 function App() {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Notifications.css";
 import close from "./assets/close.png"
-import { getLatestNotifications } from "./utils";
+import { getLatestNotifications } from "../utils/utils";
 
 const Notifications = () => {
     return (
