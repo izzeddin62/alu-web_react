@@ -9,11 +9,11 @@ function App() {
       <div className="root-notifications">
         <Notifications />
       </div>
-      <div className="App-header">
+      <div className="App-header" data-testid="App-header">
         <img src={logo} alt="logo" />
         <h1>School dashboard</h1>
       </div>
-      <div className="App-body">
+      <div className="App-body" data-testid="App-body">
         <p>Login to access the full dashboard</p>
         <form action="">
           <label htmlFor="email">
@@ -28,7 +28,7 @@ function App() {
         </form>
       </div>
 
-      <div className="App-footer">
+      <div className="App-footer" data-testid="App-footer">
         <p>Copyright {getFullYear()} - holberton School</p>
         <p>{getFooterCopy(false)}</p>
       </div>
