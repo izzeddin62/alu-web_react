@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/alu-web_react/static/css/main.6d3f6a6f.css",
+    "main.js": "/alu-web_react/static/js/main.bc8d633a.js",
+    "static/media/logo.jpeg": "/alu-web_react/static/media/logo.24bab5d633e36ca8d17e.jpeg",
+    "index.html": "/alu-web_react/index.html",
+    "main.6d3f6a6f.css.map": "/alu-web_react/static/css/main.6d3f6a6f.css.map",
+    "main.bc8d633a.js.map": "/alu-web_react/static/js/main.bc8d633a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6d3f6a6f.css",
+    "static/js/main.bc8d633a.js"
+  ]
+}
