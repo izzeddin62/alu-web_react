@@ -1,4 +1,4 @@
-import { getFullYear, getFooterCopy } from "./utils";
+import { getFullYear, getFooterCopy, getLatestNotifications } from "./utils";
 
 
 describe("getFullYear", () => {
@@ -14,5 +14,12 @@ describe("getFooterCopy", () => {
 
     it("should return the correct string when isIndex is false", () => {
         expect(getFooterCopy(false)).toBe("Holberton School main dashboard");
+    });
+});
+
+
+describe("getLatestNotifications", () => {
+    it("should return the correct string", () => {
+        expect(getLatestNotifications()).toBe("<strong>Urgent requirement</strong> - complete by EOD");
     });
 });
