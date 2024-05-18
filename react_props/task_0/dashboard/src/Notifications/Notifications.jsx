@@ -18,7 +18,7 @@ const Notifications = () => {
         </button>
       </p>
       <ul>
-        <NotificationItem value="New course available" />
+        <NotificationItem type="1" value="New course available" />
         <NotificationItem value="New resume available" type={"1"} />
         <NotificationItem value={getLatestNotifications()} html type={"1"} />
       </ul>
