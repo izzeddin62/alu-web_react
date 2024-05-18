@@ -8,11 +8,11 @@ export default function Login() {
       <form action="">
         <label htmlFor="email">
           email:
-          <input type="email" id="email" />
+          <input type="email" data-testid="email" id="email" />
         </label>
         <label htmlFor="password">
           password:
-          <input type="password" id="password" />
+          <input type="password" data-testid="password" id="password" />
         </label>
         <button>ok</button>
       </form>
