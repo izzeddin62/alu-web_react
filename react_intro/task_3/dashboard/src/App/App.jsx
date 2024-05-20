@@ -1,7 +1,6 @@
 import "./App.css";
-import Notifications from "./Notifications";
-import logo from "./assets/logo.jpeg";
-import { getFooterCopy, getFullYear } from "./utils";
+import Notifications from "../Notifications/Notifications";
+import { getFooterCopy, getFullYear } from "../utils";
 
 function App() {
   return (
@@ -9,10 +8,7 @@ function App() {
       <div className="root-notifications">
         <Notifications />
       </div>
-      <div className="App-header" data-testid="App-header">
-        <img src={logo} alt="logo" />
-        <h1>School dashboard</h1>
-      </div>
+
       <div className="App-body" data-testid="App-body">
         <p>Login to access the full dashboard</p>
         <form action="">
