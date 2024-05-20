@@ -11,7 +11,7 @@ describe("Notification item", () => {
     });
 
     it("should render the correct when inner html is provided", () => {
-        render(<NotificationItem value="<strong>hello world</strong>" html />);
+        render(<NotificationItem html="<strong>hello world</strong>" />);
         screen.getByText(/hello world/i);
     })
 });

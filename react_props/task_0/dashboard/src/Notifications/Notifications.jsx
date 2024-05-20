@@ -1,10 +1,11 @@
 import React from "react";
 import "./Notifications.css";
 import close from "../assets/close.png";
-import { getLatestNotifications } from "../utils/utils";
 import NotificationItem from "./NotificationItem";
+import PropTypes from "prop-types";
+import NotificationItemShape from "./NotificationItemShape";
 
-const Notifications = () => {
+const Notifications = ({ listNotifications = [] }) => {
   return (
     <div className="Notifications">
       <p style={{ display: "flex", justifyContent: "space-between" }}>
@@ -18,12 +19,23 @@ const Notifications = () => {
         </button>
       </p>
       <ul>
-        <NotificationItem type="1" value="New course available" />
-        <NotificationItem value="New resume available" type={"1"} />
-        <NotificationItem value={getLatestNotifications()} html type={"1"} />
+      {
+        listNotifications.length > 0 ? (
+          listNotifications.map(({ id, type, value, html }) => (
+            <NotificationItem key={id} type={type} value={value} html={html}  />
+          ))
+        ) : (
+          <NotificationItem value="No new notification for now" />
+        )
+      }
       </ul>
     </div>
   );
 };
+
+Notifications.propTypes = {
+  listNotifications: PropTypes.arrayOf(NotificationItemShape),
+};
+
 
 export default Notifications;
