@@ -62,7 +62,21 @@ const styles = StyleSheet.create({
   app: {
     display: 'flex',
     height: '100vh',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    background: "red"
+  },
+  body: {
+    textAlign: 'center',
+    fontSize: '18px',
+
+  },
+  footer: {
+    textAlign: 'center',
+    fontStyle: 'italic',
+    fontSize: '12px',
+    width: '100%',
+    backgroundColor: 'white',
+    borderTop: '1px solid black',
   }
 });
 
