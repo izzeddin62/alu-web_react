@@ -1,5 +1,5 @@
 import React from "react";
-import { Stylesheet, css} from 'aphrodite';
+import { StyleSheet, css} from 'aphrodite';
 
 
 
@@ -35,7 +35,7 @@ const className = isHeader ? css(styles.tableHeader) : css(styles.tableBody);
 }
 
 
-const styles = Stylesheet.create({
+const styles = StyleSheet.create({
   tableHeader: {
     backgroundColor: "#deb5b545",
   },
