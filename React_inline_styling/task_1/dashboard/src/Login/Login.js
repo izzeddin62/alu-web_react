@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
   appBody: {
     flex: 1,
     paddingLeft: "60px",
+    margin: "20px",
   },
   text: {
     fontSize: "32px",
