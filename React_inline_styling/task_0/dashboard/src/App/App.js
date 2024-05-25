@@ -65,6 +65,19 @@ const styles = StyleSheet.create({
     height: '100vh',
     flexDirection: 'column',
     background: "red"
+  },
+  body: {
+    textAlign: 'center',
+    fontSize: '18px',
+
+  },
+  footer: {
+    textAlign: 'center',
+    fontStyle: 'italic',
+    fontSize: '12px',
+    width: '100%',
+    backgroundColor: 'white',
+    borderTop: '1px solid black',
   }
 });
 
