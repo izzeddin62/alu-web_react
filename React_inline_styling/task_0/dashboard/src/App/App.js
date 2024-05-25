@@ -36,16 +36,22 @@ export default class App extends React.Component {
   render() {
 
     return (
-      <div className={css(styles.red)}>
+      <div className={css(styles.app)}>
         <Notifications listNotifications={this.listNotifications} />
         <Header />
-        <BodySectionWithMarginBottom title={this.isLoggedIn ? 'Course list' : "Log in to continue"}>
+        <div className={css(styles.body)}>
+          <BodySectionWithMarginBottom title={this.isLoggedIn ? 'Course list' : "Log in to continue"}>
           {this.isLoggedIn ? <CourseList listCourses={this.listCourses} /> : <Login />}
         </BodySectionWithMarginBottom>
+        </div>
+        
         <BodySection title="News from the School">
           <p>Latest school gossip</p>
         </BodySection>
-        <Footer />
+        <div className={css(styles.footer)}>
+          <Footer />
+        </div>
+        
       </div>
     );
   }
