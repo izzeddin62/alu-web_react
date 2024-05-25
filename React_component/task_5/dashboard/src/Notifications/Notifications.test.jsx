@@ -21,4 +21,21 @@ describe("Notifications tests", () => {
     render(<Notifications />);
     screen.getByText("Here is the list of notifications");
   });
+
+  it("should update component when listNotifications prop changes", () => {
+    const listNotifications = [
+      { id: 1, type: "default", value: "New course available" },
+      { id: 2, type: "urgent", value: "New resume available" },
+    ];
+    const { rerender } = render(<Notifications listNotifications={listNotifications} />);
+    expect(screen.getAllByRole("listitem")).toHaveLength(2);
+
+    const updatedListNotifications = [
+      { id: 1, type: "default", value: "New course available" },
+      { id: 2, type: "urgent", value: "New resume available" },
+      { id: 3, type: "urgent", value: "New notification" },
+    ];
+    rerender(<Notifications listNotifications={updatedListNotifications} />);
+    expect(screen.getAllByRole("listitem")).toHaveLength(3);
+  });
 });
