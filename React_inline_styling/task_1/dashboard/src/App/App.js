@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import Notifications from "../Notifications/Notifications";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -36,7 +35,7 @@ export default class App extends React.Component {
   render() {
 
     return (
-      <div className={css(styles.red)}>
+      <div className={css(styles.app)}>
         <Notifications listNotifications={this.listNotifications} />
         <Header />
         <BodySectionWithMarginBottom title={this.isLoggedIn ? 'Course list' : "Log in to continue"}>
@@ -63,8 +62,7 @@ const styles = StyleSheet.create({
   app: {
     display: 'flex',
     height: '100vh',
-    flexDirection: 'column',
-    background: "red"
+    flexDirection: 'column'
   }
 });
 
