@@ -9,11 +9,19 @@ class Notifications extends React.Component {
   markAsRead(id) {
     console.log(`Notification ${id} has been marked as read`);
   }
+  shouldComponentUpdate(nextProps) {
+    return (
+      nextProps.listNotifications.length >
+        this.props.listNotifications.length ||
+      nextProps.displayDrawer !== this.props.displayDrawer
+    );
+  }
   render() {
     const {
       handleDisplayDrawer,
       handleHideDrawer,
-      displayDrawer
+      displayDrawer,
+      listNotifications
     } = this.props;
     console.log(this.props.displayDrawer);
     return (
@@ -32,8 +40,8 @@ class Notifications extends React.Component {
         </div>
 
         {displayDrawer && <ul>
-          {this.props.listNotifications.length > 0 ? (
-            this.props.listNotifications.map(({ id, type, value, html }) => (
+          {listNotifications.length > 0 ? (
+            listNotifications.map(({ id, type, value, html }) => (
               <NotificationItem
                 id={id}
                 markAsRead={this.markAsRead}
@@ -55,8 +63,8 @@ class Notifications extends React.Component {
 Notifications.defaultProps = {
   listNotifications: [],
   displayDrawer: false,
-  handleDisplayDrawer: () => { },
-  handleHideDrawer: () => { },
+  handleDisplayDrawer: () => {},
+  handleHideDrawer: () => {},
 };
 
 Notifications.propTypes = {
