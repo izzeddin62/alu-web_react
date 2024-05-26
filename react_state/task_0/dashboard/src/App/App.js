@@ -33,7 +33,6 @@ export default class App extends React.Component {
     this.handleHideDrawer = this.handleHideDrawer.bind(this);
   }
   handleDisplayDrawer() {
-    console.log("I click here")
     this.setState({ displayDrawer: true });
   }
   handleHideDrawer() {
