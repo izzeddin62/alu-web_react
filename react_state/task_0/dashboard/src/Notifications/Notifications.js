@@ -15,23 +15,24 @@ class Notifications extends React.Component {
   //   );
   // }
   render() {
+    const { handleDisplayDrawer, handleHideDrawer, displayDrawer } = this.props;
     console.log(this.props.displayDrawer);
     return (
       <div className={css(styles.Notifications)}>
         <div className={css(styles.text)}>
-          <p onClick={this.props.handleDisplayDrawer}>
+          <p onClick={handleDisplayDrawer}>
             Here is the list of notifications{" "}
           </p>
           <button
             aria-label="close"
             style={{ textAlign: "right", display: "inline" }}
-            onClick={this.props.handleHideDrawer}
+            onClick={handleHideDrawer}
           >
             <img src={close} alt="close" height={20} width={20} />
           </button>
         </div>
 
-        {this.props.displayDrawer && <ul>
+        {displayDrawer && <ul>
           {this.props.listNotifications.length > 0 ? (
             this.props.listNotifications.map(({ id, type, value, html }) => (
               <NotificationItem
