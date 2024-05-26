@@ -1,13 +1,13 @@
 import { getLatestNotifications } from "../utils/utils";
 import Notifications from "./Notifications";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { StyleSheetTestUtils } from "aphrodite";
 
 StyleSheetTestUtils.suppressStyleInjection()
 
 describe("Notifications tests", () => {
   it("should render the corrent message when there not notification", () => {
-    render(<Notifications />);
+    render(<Notifications displayDrawer={true} />);
     expect(screen.getAllByRole("listitem")).toHaveLength(1);
   });
   it("should render all notifications", () => {
@@ -16,7 +16,7 @@ describe("Notifications tests", () => {
       { id: 2, type: "urgent", value: "New resume available" },
       { id: 3, type: "urgent", html: getLatestNotifications() },
     ];
-    render(<Notifications listNotifications={listNotifications} />);
+    render(<Notifications displayDrawer={true}  listNotifications={listNotifications} />);
     expect(screen.getAllByRole("listitem")).toHaveLength(3);
   });
 
@@ -30,7 +30,7 @@ describe("Notifications tests", () => {
       { id: 1, type: "default", value: "New course available" },
       { id: 2, type: "urgent", value: "New resume available" },
     ];
-    const { rerender } = render(<Notifications listNotifications={listNotifications} />);
+    const { rerender } = render(<Notifications displayDrawer={true} listNotifications={listNotifications} />);
     expect(screen.getAllByRole("listitem")).toHaveLength(2);
 
     const updatedListNotifications = [
@@ -38,7 +38,33 @@ describe("Notifications tests", () => {
       { id: 2, type: "urgent", value: "New resume available" },
       { id: 3, type: "urgent", value: "New notification" },
     ];
-    rerender(<Notifications listNotifications={updatedListNotifications} />);
+    rerender(<Notifications displayDrawer={true} listNotifications={updatedListNotifications} />);
     expect(screen.getAllByRole("listitem")).toHaveLength(3);
+  });
+
+  it("should render the component with displayDrawer set to true", () => {
+    render(<Notifications displayDrawer={true} />);
+    screen.getByText('No new notification for now')
+  });
+
+  it("should render the component with displayDrawer set to false", () => {
+    render(<Notifications displayDrawer={false} />);
+    expect(screen.queryByText('No new notification for now')).toBeNull();
+  });
+
+  it("should call handleHideDrawer when close button is clicked", () => {
+    const handleHideDrawerMock = jest.fn();
+    render(<Notifications handleHideDrawer={handleHideDrawerMock} />);
+    const closeButton = screen.getByAltText("close");
+    fireEvent.click(closeButton);
+    expect(handleHideDrawerMock).toHaveBeenCalled();
+  });
+
+  it("should call handleDisplayDrawer when title is clicked", () => {
+    const handleDisplayDrawerMock = jest.fn();
+    render(<Notifications handleDisplayDrawer={handleDisplayDrawerMock} />);
+    const title = screen.getByText("Here is the list of notifications");
+    fireEvent.click(title);
+    expect(handleDisplayDrawerMock).toHaveBeenCalled();
   });
 });
