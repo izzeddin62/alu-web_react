@@ -13,12 +13,12 @@ describe('App tests', () => {
     });
 
 
-    it.skip("Has default state for displayDrawer false", () => {
+    it.skip("should Have displayDrawer as false by default", () => {
         const wrapper = shallow(<App />);
         expect(wrapper.state().displayDrawer).toEqual(false);
     });
 
-    it.skip("displayDrawer changes to true when calling handleDisplayDrawer", () => {
+    it.skip("should change displayDrawer to true when handlerDisplayDrawer is called", () => {
         const wrapper = shallow(<App />);
         expect(wrapper.state().displayDrawer).toEqual(false);
 
@@ -29,7 +29,7 @@ describe('App tests', () => {
         expect(wrapper.state().displayDrawer).toEqual(true);
     });
 
-    it.skip("displayDrawer changes to false when calling handleHideDrawer", () => {
+    it.skip("should change displayDrawer to false when handleHideDrawer is called", () => {
         const wrapper = shallow(<App />);
         expect(wrapper.state().displayDrawer).toEqual(false);
 
