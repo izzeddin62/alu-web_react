@@ -9,13 +9,12 @@ class Notifications extends React.Component {
   markAsRead(id) {
     console.log(`Notification ${id} has been marked as read`);
   }
-  // shouldComponentUpdate(nextProps) {
-  //   return (
-  //     nextProps.listNotifications.length > this.props.listNotifications.length
-  //   );
-  // }
   render() {
-    const { handleDisplayDrawer, handleHideDrawer, displayDrawer } = this.props;
+    const {
+      handleDisplayDrawer,
+      handleHideDrawer,
+      displayDrawer
+    } = this.props;
     console.log(this.props.displayDrawer);
     return (
       <div className={css(styles.Notifications)}>
