@@ -1,5 +1,6 @@
-import { SELECT_COURSE, UNSELECT_COURSE } from './courseActionTypes';
-import { selectCourse, unSelectCourse } from './courseActionCreators';
+import { SELECT_COURSE, UNSELECT_COURSE } from "./courseActionTypes";
+import { selectCourse, unSelectCourse } from "./courseActionsCreators";
+
 
 describe('Action creators', () => {
     test('selectCourse', () => {
