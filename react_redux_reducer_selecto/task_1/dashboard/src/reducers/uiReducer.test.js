@@ -9,13 +9,13 @@ describe('uiReducer', () => {
     
     })
     it('should return the initial state', () => {
-        expect(uiReducer(initialState, {})).toEqual(initialState);
+        expect(uiReducer(undefined, {})).toEqual(initialState);
     });
 
     it('should handle LOGOUT', () => {
 
         expect(
-            uiReducer(initialState, {
+            uiReducer(undefined, {
                 type: 'LOGOUT'
             })
         ).toEqual(initialState.set('isUserLoggedIn', false));
@@ -23,7 +23,7 @@ describe('uiReducer', () => {
 
     it('should handle DISPLAY_NOTIFICATION_DRAWER', () => {
         expect(
-            uiReducer(initialState, {
+            uiReducer(undefined, {
                 type: 'DISPLAY_NOTIFICATION_DRAWER'
             })
         ).toEqual(initialState.set('isNotificationDrawerVisible', true));
@@ -31,7 +31,7 @@ describe('uiReducer', () => {
 
     it('should handle HIDE_NOTIFICATION_DRAWER', () => {
         expect(
-            uiReducer(initialState, {
+            uiReducer(undefined, {
                 type: 'HIDE_NOTIFICATION_DRAWER'
             })
         ).toEqual(initialState.set('isNotificationDrawerVisible', false));
@@ -39,7 +39,7 @@ describe('uiReducer', () => {
 
     it('should handle LOGIN_SUCCESS', () => {
         expect(
-            uiReducer(initialState, {
+            uiReducer(undefined, {
                 type: 'LOGIN_SUCCESS'
             })
         ).toEqual(initialState.set('isUserLoggedIn', true));
@@ -47,7 +47,7 @@ describe('uiReducer', () => {
 
     it('should handle LOGIN_FAILURE', () => {
         expect(
-            uiReducer(initialState, {
+            uiReducer(undefined, {
                 type: 'LOGIN_FAILURE'
             })
         ).toEqual(initialState.set('isUserLoggedIn', false));
