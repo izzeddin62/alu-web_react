@@ -10,6 +10,7 @@ import BodySection from "../BodySection/BodySection";
 import { StyleSheet, css } from 'aphrodite';
 import AppContext, { user } from "./AppContext";
 import { connect } from 'react-redux';
+import { displayNotificationDrawer, hideNotificationDrawer } from '../actions/uiActionCreators';
 
 export class App extends React.Component {
   listCourses = [
@@ -25,7 +26,7 @@ export class App extends React.Component {
 
 
   constructor(props) {
-    
+
     super(props);
     this.logOut = this.logOut.bind(this);
     this.state = {
@@ -72,14 +73,15 @@ export class App extends React.Component {
     });
   }
   render() {
-    const { displayDrawer, user, listNotifications } = this.state;
+    const { user, listNotifications } = this.state;
+    const { displayDrawer, displayNotificationDrawer, hideNotificationDrawer } = this.props;
     return (
       <AppContext.Provider value={this.state}>
         <div className={css(styles.app)}>
           <Notifications
             displayDrawer={displayDrawer}
-            handleDisplayDrawer={this.handleDisplayDrawer}
-            handleHideDrawer={this.handleHideDrawer}
+            handleDisplayDrawer={displayNotificationDrawer}
+            handleHideDrawer={hideNotificationDrawer}
             listNotifications={listNotifications}
             markNotificationAsRead={this.markNotificationAsRead}
           />
@@ -123,7 +125,11 @@ const styles = StyleSheet.create({
 export function mapStateToProps(state) {
   return {
     isLoggedIn: state.get ? state.get('isUserLoggedIn') : state.isUserLoggedIn,
+    displayDrawer: state.get ? state.get('isNotificationDrawerVisible') : state.isNotificationDrawerVisible,
   };
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, {
+  displayNotificationDrawer,
+  hideNotificationDrawer,
+})(App);
