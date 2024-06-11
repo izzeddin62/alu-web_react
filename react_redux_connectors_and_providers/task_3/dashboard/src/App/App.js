@@ -72,7 +72,8 @@ export class App extends React.Component {
     });
   }
   render() {
-    const { displayDrawer, user, listNotifications } = this.state;
+    const { user, listNotifications } = this.state;
+    const { displayDrawer } = this.props;
     return (
       <AppContext.Provider value={this.state}>
         <div className={css(styles.app)}>
