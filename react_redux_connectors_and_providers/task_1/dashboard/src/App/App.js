@@ -11,6 +11,7 @@ import { StyleSheet, css } from 'aphrodite';
 import AppContext, { user } from "./AppContext";
 import { connect } from 'react-redux';
 import { displayNotificationDrawer, hideNotificationDrawer } from '../actions/uiActionCreators';
+import PropTypes from 'prop-types';
 
 export class App extends React.Component {
   listCourses = [
@@ -30,21 +31,12 @@ export class App extends React.Component {
     super(props);
     this.logOut = this.logOut.bind(this);
     this.state = {
-      displayDrawer: false,
       user,
       logOut: this.logOut,
       listNotifications: [...this.listNotifications]
     };
-    this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
-    this.handleHideDrawer = this.handleHideDrawer.bind(this);
     this.logIn = this.logIn.bind(this);
     this.markNotificationAsRead = this.markNotificationAsRead.bind(this);
-  }
-  handleDisplayDrawer() {
-    this.setState({ displayDrawer: true });
-  }
-  handleHideDrawer() {
-    this.setState({ displayDrawer: false });
   }
 
   logIn(email, password) {
@@ -98,6 +90,19 @@ export class App extends React.Component {
     );
   }
 }
+
+App.propTypes = {
+  isLoggedIn: PropTypes.bool,
+  displayDrawer: PropTypes.bool,
+  displayNotificationDrawer: PropTypes.func,
+  hideNotificationDrawer: PropTypes.func,
+};
+App.defaultProps = {
+  isLoggedIn: false,
+  displayDrawer: false,
+  displayNotificationDrawer: () => { },
+  hideNotificationDrawer: () => { },
+};
 
 
 
