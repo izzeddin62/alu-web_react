@@ -1,7 +1,15 @@
 import { getNotifications } from '../data';
 import { MARK_AS_READ, SET_TYPE_FILTER, SET_LOADING_STATE, FETCH_NOTIFICATIONS_SUCCESS } from './notificationActionTypes';
 import { bindActionCreators } from 'redux';
+import { normalize, schema } from 'normalizr';
 
+
+const userSchema = new schema.Entity('users');
+const notificationSchema = new schema.Entity('notifications', {
+  author: userSchema,
+  context: {},
+});
+const notificationsSchema = [notificationSchema];
 export const markAsRead = index => {
     return { type: MARK_AS_READ, index }
 };
@@ -11,11 +19,13 @@ export const setNotificationFilter = (filter) => {
 
 
 export const setLoadingState = (loading) => {
+    
     return { type: SET_LOADING_STATE, loading };
 }
 
 export const setNotifications = (data) => {
-    return { type: FETCH_NOTIFICATIONS_SUCCESS, data };
+    const normalizedData = normalize(data, notificationsSchema);
+    return { type: FETCH_NOTIFICATIONS_SUCCESS, data: normalizedData.entities.notifications };
 }
 
 export const fetchNotifications = () => {

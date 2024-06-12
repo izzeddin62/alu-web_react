@@ -1,38 +1,22 @@
-import { MARK_AS_READ, SET_TYPE_FILTER, NotificationTypeFilters, FETCH_NOTIFICATIONS_SUCCESS } from '../actions/notificationActionTypes';
+import { MARK_AS_READ, SET_TYPE_FILTER, NotificationTypeFilters, FETCH_NOTIFICATIONS_SUCCESS, SET_LOADING_STATE } from '../actions/notificationActionTypes';
+import { Map, fromJS } from 'immutable';
 
-const initialState = {
-    notifications: [],
+const initialState = Map({
+    notifications: Map(),
     filter: NotificationTypeFilters.DEFAULT,
-};
+    loading: false
+});
 
 export function notificationReducer(state = initialState, action) {
     switch (action.type) {
         case MARK_AS_READ:
-            return {
-                ...state,
-                notifications: state.notifications.map((notification) => {
-                    if (notification.id === action.index) {
-                        return {
-                            ...notification,
-                            isRead: true,
-                        };
-                    }
-                    return notification;
-                }),
-            };
+            return state.setIn(['notifications', action.index, 'isRead'], true);
         case SET_TYPE_FILTER:
-            return {
-                ...state,
-                filter: action.filter,
-            };
+            return state.set('filter', action.filter);
         case FETCH_NOTIFICATIONS_SUCCESS:
-            return {
-                ...state,
-                notifications: action.data.map((notification) => ({
-                    ...notification,
-                    isRead: false,
-                })),
-            };
+            return state.set('notifications', fromJS(action.data));
+        case SET_LOADING_STATE:
+            return state.set('loading', action.loading);
         default:
             return state;
     }
