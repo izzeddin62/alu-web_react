@@ -4,17 +4,15 @@ import NotificationItem from "./NotificationItem";
 import PropTypes from "prop-types";
 import NotificationItemShape from "./NotificationItemShape";
 import { StyleSheet, css } from "aphrodite/no-important";
+import { connect } from "react-redux";
+import { markAsRead, fetchNotifications } from "../actions/notificationActionCreators";
 
 class Notifications extends React.Component {
   markAsRead(id) {
     console.log(`Notification ${id} has been marked as read`);
   }
-  shouldComponentUpdate(nextProps) {
-    return (
-      nextProps.listNotifications.length !==
-        this.props.listNotifications.length ||
-      nextProps.displayDrawer !== this.props.displayDrawer
-    );
+  componentDidMount() {
+    this.props.fetchNotifications();
   }
   render() {
     const {
@@ -22,8 +20,10 @@ class Notifications extends React.Component {
       handleHideDrawer,
       displayDrawer,
       listNotifications,
-      markNotificationAsRead
+      markAsRead
     } = this.props;
+
+    console.log(displayDrawer, listNotifications.size, '======');
     return (
       <div className={css(styles.Notifications)}>
         <div className={css(styles.text)}>
@@ -40,19 +40,20 @@ class Notifications extends React.Component {
         </div>
 
         {displayDrawer && <ul>
-          {listNotifications.length > 0 ? (
-            listNotifications.map(({ id, type, value, html }) => (
+          {listNotifications.size > 0 ? (
+            listNotifications.valueSeq().filter(notification => !notification.getIn(['context', 'isRead'])).map((notification) => (
               <NotificationItem
-                id={id}
-                markAsRead={markNotificationAsRead}
-                key={id}
-                type={type}
-                value={value}
-                html={html}
+                id={notification.get("id")}
+                markAsRead={() => {
+                  markAsRead(notification.get('id'))}}
+                key={notification.get("id")}
+                type={notification.getIn(['context', 'type'])}
+                value={notification.getIn(['context', 'value'])}
+                html={notification.getIn(['context', 'html'])}
               />
             ))
           ) : (
-            <NotificationItem markAsRead={() => {}} value="No new notification for now" />
+            <NotificationItem markAsRead={() => { }} value="No new notification for now" />
           )}
         </ul>}
       </div>
@@ -63,9 +64,9 @@ class Notifications extends React.Component {
 Notifications.defaultProps = {
   listNotifications: [],
   displayDrawer: false,
-  handleDisplayDrawer: () => {},
-  handleHideDrawer: () => {},
-  markNotificationAsRead: () => {},
+  handleDisplayDrawer: () => { },
+  handleHideDrawer: () => { },
+  markNotificationAsRead: () => { },
 };
 
 Notifications.propTypes = {
@@ -85,4 +86,14 @@ const styles = StyleSheet.create({
   text: { display: "flex", justifyContent: "space-between" },
 });
 
-export default Notifications;
+export function mapStateToProps(state) {
+  return {
+    listNotifications: state.notifications.get("notifications"),
+    displayDrawer: state.ui.get ? state.ui.get("isNotificationDrawerVisible") : state.ui.isNotificationDrawerVisible,
+  };
+}
+
+export default connect(mapStateToProps, {
+  markAsRead,
+  fetchNotifications,
+})(Notifications);

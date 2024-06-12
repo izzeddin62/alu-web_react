@@ -10,7 +10,11 @@ const initialState = Map({
 export function notificationReducer(state = initialState, action) {
     switch (action.type) {
         case MARK_AS_READ:
-            return state.setIn(['notifications', action.index, 'isRead'], true);
+            console.log(state.get('notifications').get(action.index).toJS());
+            const newState = state.setIn(['notifications', action.index, 'context', 'isRead'], true);
+            console.log(newState.toJS(), '====new');
+            console.log(newState.get('notifications').get(action.index).toJS(), '====new');
+            return newState;
         case SET_TYPE_FILTER:
             return state.set('filter', action.filter);
         case FETCH_NOTIFICATIONS_SUCCESS:

@@ -2,11 +2,12 @@ import { StyleSheetTestUtils } from "aphrodite";
 import App, { mapStateToProps } from "./App";
 import { render, screen } from '@testing-library/react';
 import { fromJS } from 'immutable';
-import { createStore } from 'redux';
+import { createStore,applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { rootReducer } from "../reducers/rootReducer";
+import {thunk} from 'redux-thunk';
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 StyleSheetTestUtils.suppressStyleInjection()
 describe('App tests', () => {
