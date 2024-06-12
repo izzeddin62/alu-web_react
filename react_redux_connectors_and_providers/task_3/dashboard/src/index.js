@@ -9,7 +9,7 @@ import { composeWithDevTools } from '@redux-devtools/extension';
 
 
 const store = createStore(uiReducer,
-  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  // window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
   composeWithDevTools(applyMiddleware(thunk)));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
