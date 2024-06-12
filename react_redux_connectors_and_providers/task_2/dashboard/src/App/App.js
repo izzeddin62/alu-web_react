@@ -10,7 +10,7 @@ import BodySection from "../BodySection/BodySection";
 import { StyleSheet, css } from 'aphrodite';
 import AppContext, { user } from "./AppContext";
 import { connect } from 'react-redux';
-import { displayNotificationDrawer, hideNotificationDrawer, login, loginRequest, logout } from '../actions/uiActionCreators';
+import { displayNotificationDrawer, hideNotificationDrawer, loginRequest, logout } from '../actions/uiActionCreators';
 import PropTypes from 'prop-types';
 
 export class App extends React.Component {
