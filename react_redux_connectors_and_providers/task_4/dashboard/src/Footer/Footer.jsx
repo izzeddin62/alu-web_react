@@ -14,9 +14,10 @@ export function Footer({ user, isLoggedIn }) {
 
 
 export function mapStateToProps(state) {
+  const { ui } = state;
   return {
-    user: state.get ? state.get('user') : state.user,
-    isLoggedIn: state.get ? state.get('isUserLoggedIn') : state.isUserLoggedIn,
+    user: ui?.get ? ui?.get('user') : ui?.user,
+    isLoggedIn: ui?.get ? ui?.get('isUserLoggedIn') : ui?.isUserLoggedIn,
   };
 }
 

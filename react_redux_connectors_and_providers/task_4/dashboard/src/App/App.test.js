@@ -1,12 +1,12 @@
 import { StyleSheetTestUtils } from "aphrodite";
-import App,{ mapStateToProps }  from "./App";
+import App, { mapStateToProps } from "./App";
 import { render, screen } from '@testing-library/react';
 import { fromJS } from 'immutable';
 import { createStore } from 'redux';
-import { uiReducer } from '../reducers/uiReducer';
 import { Provider } from 'react-redux';
+import { rootReducer } from "../reducers/rootReducer";
 
-const store = createStore(uiReducer);
+const store = createStore(rootReducer);
 
 StyleSheetTestUtils.suppressStyleInjection()
 describe('App tests', () => {
@@ -18,9 +18,11 @@ describe('App tests', () => {
     });
 
     it('should map state correctly', () => {
-        const state = fromJS({
-            isUserLoggedIn: true,
-        })
+        const state = {
+            ui: fromJS({
+                isUserLoggedIn: true,
+            })
+        }
         const props = mapStateToProps(state)
         expect(props.isLoggedIn).toBe(true)
     })
