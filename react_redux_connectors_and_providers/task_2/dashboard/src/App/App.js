@@ -58,7 +58,7 @@ export class App extends React.Component {
   }
   render() {
     const { listNotifications } = this.state;
-    const { displayDrawer, displayNotificationDrawer, hideNotificationDrawer, login, logout, isLoggedIn } = this.props;
+    const { displayDrawer, displayNotificationDrawer, hideNotificationDrawer, login, isLoggedIn } = this.props;
     return (
       <AppContext.Provider value={this.state}>
         <div className={css(styles.app)}>

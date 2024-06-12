@@ -1,20 +1,20 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import logo from "../assets/logo.jpeg";
 import { StyleSheet, css } from "aphrodite";
-import { useContext } from "react";
-import AppContext from "../App/AppContext";
+import { connect } from "react-redux";
+import { logout } from "../actions/uiActionCreators";
 
-export default function Header() {
-  const { user, logOut } = useContext(AppContext);
+export function Header({ user, isLoggedIn, logout }) {
+  console.log(user, '======', isLoggedIn);
   return (
     <>
       <div className={css(styles.AppHeader)} data-testid="App-header">
         <img className={css(styles.AppHeaderImg)} src={logo} alt="logo" />
         <h1 className={css(styles.AppHeaderH1)}>School dashboard</h1>
       </div>
-      {user.isLoggedIn && <h2 id="logoutSection">Welcome {user.email} <a href="#" data-testid="logout-link" onClick={(e) => {
+      {isLoggedIn && <h2 id="logoutSection">Welcome {user.email} <a href="#" data-testid="logout-link" onClick={(e) => {
         e.preventDefault();
-        logOut();
+        logout();
       }}>logout</a></h2>}
     </>
 
@@ -41,3 +41,13 @@ const styles = StyleSheet.create({
     fontSize: '60px'
   },
 });
+
+export function mapStateToProps(state) {
+  return {
+    user: state.get ? state.get('user') : state.user,
+    isLoggedIn: state.get ? state.get('isUserLoggedIn') : state.isUserLoggedIn,
+  };
+}
+
+export default connect(mapStateToProps, { logout })(Header);
+

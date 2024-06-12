@@ -4,7 +4,6 @@ import './Footer.css';
 import { connect } from "react-redux";
 
 export function Footer({ user, isLoggedIn }) {
-  console.log(user, isLoggedIn, '==== footer items =======')
   return (
     <div className="App-footer" data-testid="App-footer">
       <p>Copyright {getFullYear()} - holberton School {isLoggedIn && <span>| <a href="#">contact us</a></span>}</p>
